@@ -104,15 +104,21 @@ POST /api/v1/parking
 Content-Type: application/json
 
 {
-  "plate": "ABC-1234"
+  "plate": "AAA-4444"
 }
+```
+
+**Example:**
+```bash
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"plate":"AAA-4444"}' http://localhost:3000/api/v1/parking
 ```
 
 **Response (201 Created):**
 ```json
 {
-  "id": 1,
-  "plate": "ABC-1234",
+  "id": 4,
+  "plate": "AAA-4444",
   "message": "Entrada registrada com sucesso"
 }
 ```
@@ -125,7 +131,8 @@ PUT /api/v1/parking/:plate/pay
 
 **Example:**
 ```bash
-curl -X PUT http://localhost:3000/api/v1/parking/ABC-1234/pay
+curl -X PUT -H "Content-Type: application/json" \
+  -d '{"plate":"AAA-4444"}' http://localhost:3000/api/v1/parking/AAA-4444/pay
 ```
 
 **Response (200 OK):**
@@ -143,7 +150,8 @@ PUT /api/v1/parking/:plate/out
 
 **Example:**
 ```bash
-curl -X PUT http://localhost:3000/api/v1/parking/ABC-1234/out
+curl -X PUT -H "Content-Type: application/json" \
+  -d '{"plate":"AAA-4444"}' http://localhost:3000/api/v1/parking/AAA-4444/out
 ```
 
 **Response (200 OK):**
@@ -157,6 +165,23 @@ curl -X PUT http://localhost:3000/api/v1/parking/ABC-1234/out
 
 ```http
 GET /api/v1/parking/:plate
+```
+
+**Example:**
+```bash
+curl -X GET http://localhost:3000/api/v1/parking/AAA-4444
+```
+
+**Response (200 OK):**
+```json
+[
+  {
+    "id": 4,
+    "time": "2 minutos",
+    "paid": true,
+    "left": true
+  }
+]
 ```
 
 **Example:**
