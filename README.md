@@ -26,8 +26,8 @@ A RESTful API for managing parking lot operations built with Ruby on Rails 8.
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
-cd parking_control
+git clone git@github.com:fabriciobonjorno/ParkingControl.git
+cd ParkingControl
 ```
 
 ### 2. Build and start the containers
