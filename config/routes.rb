@@ -9,4 +9,19 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  #
+  namespace :api do
+    namespace :v1 do
+      resources :parkings, only: [ :create ], path: "parking" do
+        member do
+          put :pay
+          put :out
+        end
+
+        collection do
+          get ":plate", action: :history
+        end
+      end
+    end
+  end
 end
