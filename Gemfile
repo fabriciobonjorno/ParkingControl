@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -47,4 +49,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "dotenv-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "rspec-rails", "~> 8.0.0"
+  gem "shoulda-matchers", "~> 7.0.1"
 end
