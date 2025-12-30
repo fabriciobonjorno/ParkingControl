@@ -19,10 +19,10 @@ RSpec.describe "Api::V1::Parkings", type: :request do
     end
 
     context "with invalid plate" do
-      it "returns unprocessable entity" do
+      it "returns unprocessable content" do
         post "/api/v1/parking", params: { plate: "INVALID" }
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(JSON.parse(response.body)).to include("error" => "Invalid Plate")
       end
     end
@@ -69,18 +69,18 @@ RSpec.describe "Api::V1::Parkings", type: :request do
     end
 
     context "with invalid plate" do
-      it "returns unprocessable entity" do
+      it "returns unprocessable content" do
         put "/api/v1/parking/INVALID/pay"
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
 
     context "when no active parking exists" do
-      it "returns unprocessable entity" do
+      it "returns unprocessable content" do
         put "/api/v1/parking/ABC-1234/pay"
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(JSON.parse(response.body)["error"]).to include("Nenhum registro ativo")
       end
     end
@@ -91,7 +91,7 @@ RSpec.describe "Api::V1::Parkings", type: :request do
       it "returns error message" do
         put "/api/v1/parking/ABC-1234/pay"
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(JSON.parse(response.body)["error"]).to include("Pagamento já realizado")
       end
     end
@@ -118,7 +118,7 @@ RSpec.describe "Api::V1::Parkings", type: :request do
       it "returns payment required error" do
         put "/api/v1/parking/ABC-1234/out"
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(JSON.parse(response.body)["error"]).to include("Pagamento não realizado")
       end
     end
@@ -127,7 +127,7 @@ RSpec.describe "Api::V1::Parkings", type: :request do
       it "returns error" do
         put "/api/v1/parking/ABC-1234/out"
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -148,10 +148,10 @@ RSpec.describe "Api::V1::Parkings", type: :request do
     end
 
     context "with invalid plate format" do
-      it "returns unprocessable entity" do
+      it "returns unprocessable content" do
         get "/api/v1/parking/INVALID"
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
 

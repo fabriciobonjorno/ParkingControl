@@ -24,7 +24,7 @@ RSpec.describe Parkings::DurationService do
         started_at = Time.zone.parse('2025-01-01 10:00:00')
         left_at = Time.zone.parse('2025-01-01 11:00:00')
         result = described_class.call(started_at: started_at, left_at: left_at)
-        expect(result).to eq('60 minutos')
+        expect(result).to eq('1 hora')
       end
     end
 
