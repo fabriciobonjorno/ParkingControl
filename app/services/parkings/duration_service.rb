@@ -3,6 +3,7 @@
 module Parkings
   class DurationService
     MINIMUM_MINUTES = 1
+    MINUTES_IN_HOUR = 60
 
     def self.call(started_at:, left_at: nil)
       new(started_at, left_at).call
@@ -19,13 +20,30 @@ module Parkings
       total_minutes = ((end_time - @started_at) / 60).ceil
       total_minutes = [ total_minutes, MINIMUM_MINUTES ].max
 
-      format_minutes(total_minutes)
+      format_duration(total_minutes)
     end
 
     private
 
     def end_time
       @left_at || Time.zone.now
+    end
+
+    def format_duration(total_minutes)
+      hours   = total_minutes / MINUTES_IN_HOUR
+      minutes = total_minutes % MINUTES_IN_HOUR
+
+      parts = []
+
+      if hours.positive?
+        parts << "#{hours} #{hours == 1 ? 'hora' : 'horas'}"
+      end
+
+      if minutes.positive? || parts.empty?
+        parts << "#{minutes} #{minutes == 1 ? 'minuto' : 'minutos'}"
+      end
+
+      parts.join(" e ")
     end
 
     def format_minutes(minutes)
